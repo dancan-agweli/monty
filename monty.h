@@ -63,6 +63,8 @@ void ddrott(stack_t **stack, unsigned int lnn);
 void ddpcha(stack_t **stack, unsigned int lnn);
 void ddrots(stack_t **stack, unsigned int lnn);
 void ddpstr(stack_t **stack, unsigned int lnn);
-
+void ddprocess(stack_t **bf, char *line, unsigned int lnn);
+void ddread(const char *filename);
+int main(int argc, char *argv[]);
 
 #endif /* MONTY_H */
