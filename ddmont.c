@@ -1,6 +1,6 @@
 #include "monty.h"
 /**
- * ddpreocess - function to stack
+ * ddprocess - function to stack
  * @bf: pointer to address
  * @line: ...
  * @lnn: ...
@@ -66,10 +66,13 @@ void ddread(const char *filename)
 	ddfree(bf);
 }
 /**
- * main - main
+ * main - Entry point of program
  * @argc: ...
  * @argv: ...
- * return: sucess
+ * Description: This is the main function of the Monty program. It checks
+ * the command-line arguments, opens and reads the Monty file, and calls
+ * the ddread function to process the file's instructions.
+ * Return: 0 on success.
  */
 int main(int argc, char *argv[])
 {
