@@ -41,24 +41,28 @@ void ddprocess(stack_t **bf, char *line, unsigned int lnn)
  * @filename: ...
  * return: answer always
  */
-void ddread(const char *filename) {
-    stack_t *bf = NULL;
-    char buffer[256];
-    unsigned int lnn = 0;
+void ddread(const char *filename)
+{
+	stack_t *bf = NULL;
+	char buffer[256];
+	unsigned int lnn = 0;
 
-    FILE *dataf = fopen(filename, "r");
-    if (dataf == NULL) {
-        fprintf(stderr, "Error: Can't open file %s\n", filename);
-        exit(EXIT_FAILURE);
-    }
+	FILE *dataf = fopen(filename, "r");
 
-    while (fgets(buffer, sizeof(buffer), dataf) != NULL) {
-        lnn++;
-        ddprocess(&bf, buffer, lnn);
-    }
+	if (dataf == NULL)
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", filename);
+		exit(EXIT_FAILURE);
+	}
 
-    fclose(dataf);
-    ddfree(bf);
+	while (fgets(buffer, sizeof(buffer), dataf) != NULL)
+	{
+		lnn++;
+		ddprocess(&bf, buffer, lnn);
+	}
+
+	fclose(dataf);
+	ddfree(bf);
 }
 /**
  * main - Entry point of program
