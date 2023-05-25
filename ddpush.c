@@ -90,3 +90,25 @@ void ddfree(stack_t *stack)
 		free(stack);
 	}
 }
+/*
+ * ddpall - the  function prints all elements on the stack
+ * @stack: pointer to  the stack
+ * @lnn: ...
+ * Description: 1 for push and 2 for pall
+ * Return: always success
+ */
+void ddpall(stack_t **stack, unsigned int lnn)
+{
+	stack_t *buff;
+
+	(void)lnn;
+
+	buff = *stack;
+
+	if (buff != NULL)
+	{
+		printf("%d", buff->n);
+		buff = buff->next;
+		printf("\n");
+	}
+}
