@@ -82,12 +82,12 @@ int dd_digit(char *w)
  *  Return: answer always
  */
 
-void ddfree(stack_t *stack)
+void ddfree(stack_t *s)
 {
-	while (stack)
+	while (s)
 	{
-		ddfree(stack->next);
-		free(stack);
+		ddfree(s->next);
+		free(s);
 	}
 }
 /*
