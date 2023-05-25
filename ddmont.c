@@ -1,4 +1,6 @@
 #include "monty.h"
+#include <stdio.h>
+#include <stdlib.h>
 /**
  * ddprocess - function to stack
  * @bf: pointer to address
@@ -39,31 +41,24 @@ void ddprocess(stack_t **bf, char *line, unsigned int lnn)
  * @filename: ...
  * return: answer always
  */
-void ddread(const char *filename)
-{
-	stack_t *bf = NULL;
-	char *line = NULL;
-	size_t size = 0;
-	unsigned int lnn = 0;
-	ssize_t read;
+void ddread(const char *filename) {
+    stack_t *bf = NULL;
+    char buffer[256];
+    unsigned int lnn = 0;
 
-	FILE *dataf = fopen(filename, "r");
+    FILE *dataf = fopen(filename, "r");
+    if (dataf == NULL) {
+        fprintf(stderr, "Error: Can't open file %s\n", filename);
+        exit(EXIT_FAILURE);
+    }
 
-	if (!dataf)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", filename);
-		exit(EXIT_FAILURE);
-	}
+    while (fgets(buffer, sizeof(buffer), dataf) != NULL) {
+        lnn++;
+        ddprocess(&bf, buffer, lnn);
+    }
 
-	while ((read = getline(&line, &size, dataf)) != -1)
-	{
-		lnn++;
-		ddprocess(&bf, line, lnn);
-	}
-
-	fclose(dataf);
-	free(line);
-	ddfree(bf);
+    fclose(dataf);
+    ddfree(bf);
 }
 /**
  * main - Entry point of program
